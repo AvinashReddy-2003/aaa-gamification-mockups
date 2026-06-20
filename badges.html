@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Badges — AAA Lakshya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { brand: { primary:'#0a7c85', primaryDark:'#075e66', primaryHover:'#0d8f99', heroTeal:'#1a9ea8', secondary:'#a8dce0', subtle:'#e0f5f6', page:'#f5f9f9', success:'#2ba080', successBg:'#d6f0e8', warning:'#f4735a', warningBg:'#fdeae6', info:'#3b8fd4', infoBg:'#e0eefa', textPrimary:'#111827', textSecondary:'#374151', textMuted:'#6b7280', border:'#d1d5db' } },
+  fontFamily: { sans:['Geist','ui-sans-serif','system-ui','sans-serif'] } } } }
+</script>
+<style>
+  body{font-family:'Geist',ui-sans-serif,system-ui,sans-serif}
+  .btn-brand{background-image:linear-gradient(174deg,#3bafa8,#2c9d96);box-shadow:0 2px 12px rgba(59,175,168,.3);color:#fff}
+  .btn-brand:hover{background-image:linear-gradient(174deg,#35a39c,#278f89)}
+  .nav-item{display:flex;align-items:center;gap:.5rem;padding:.625rem .75rem .625rem .5rem;font-size:13px;font-weight:500;border-radius:.75rem;color:rgba(255,255,255,.7);border-left:4px solid transparent}
+  .nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+  .nav-item.active{background:#fff;color:#0a7c85;box-shadow:0 1px 2px rgba(0,0,0,.06);padding-left:.75rem}
+  .badge-card{transition:transform .15s ease}
+  .badge-card:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body class="bg-brand-page text-brand-textPrimary">
+<div class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="hidden md:flex w-[210px] shrink-0 flex-col bg-brand-primary text-white border-r border-[#115e59]">
+    <div class="flex items-center gap-2 px-3 py-4">
+      <div class="h-10 w-10 shrink-0 rounded-full bg-white flex items-center justify-center"><span class="text-brand-primary font-extrabold text-sm">AAA</span></div>
+      <span class="text-[14px] font-bold leading-[16px]">ARJUNAA<br>ACADEMY FOR<br>ACHIEVERS</span>
+    </div>
+    <nav class="space-y-1 px-2 pt-2">
+      <a class="nav-item"><i data-lucide="layout-dashboard" class="h-4 w-4"></i>My Dashboard</a>
+      <a class="nav-item"><i data-lucide="book-open" class="h-4 w-4"></i>My Learning</a>
+      <a class="nav-item"><i data-lucide="video" class="h-4 w-4"></i>My Classes</a>
+      <a class="nav-item"><i data-lucide="clipboard-list" class="h-4 w-4"></i>My Tests</a>
+      <a href="badges.html" class="nav-item active"><i data-lucide="award" class="h-4 w-4"></i>My Badges</a>
+      <a href="leaderboard.html" class="nav-item"><i data-lucide="trophy" class="h-4 w-4"></i>Leaderboard</a>
+      <a href="tokens.html" class="nav-item"><i data-lucide="coins" class="h-4 w-4"></i>My Rewards</a>
+    </nav>
+    <div class="flex-1"></div>
+    <div class="border-t border-white/15 px-3 py-2.5 flex items-center gap-2.5">
+      <div class="h-8 w-8 rounded-full bg-white flex items-center justify-center text-brand-primary font-bold text-xs">PS</div>
+      <div class="min-w-0 flex-1"><p class="truncate text-[13px] font-semibold text-white">Priya Sharma</p></div>
+      <i data-lucide="chevron-up" class="h-4 w-4 text-white/50"></i>
+    </div>
+  </aside>
+
+  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
+    <!-- Header -->
+    <header class="flex h-[64px] md:h-[80px] shrink-0 items-center border-b border-[#e6e8e9] bg-[rgba(246,250,250,0.85)] px-4 md:px-8 backdrop-blur">
+      <a href="index.html" class="flex items-center gap-1.5 text-[13px] font-medium text-brand-textMuted hover:text-brand-primary"><i data-lucide="arrow-left" class="h-4 w-4"></i> All Mockups</a>
+      <div class="ml-auto flex items-center gap-2">
+        <span class="flex h-[32px] items-center gap-1.5 rounded-full bg-[#fff3cd] px-3 text-[13px] font-semibold text-[#b8860b]"><i data-lucide="coins" class="h-4 w-4"></i>3,450 tokens</span>
+        <span class="hidden sm:flex h-[32px] items-center rounded-full bg-brand-secondary px-4 text-[13px] font-semibold uppercase text-[#006d77]">Advanced</span>
+        <button class="relative h-9 w-9 rounded-full hover:bg-black/5 flex items-center justify-center text-brand-textSecondary"><i data-lucide="bell" class="h-5 w-5"></i><span class="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-brand-warning"></span></button>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
+      <nav class="mb-3 flex items-center gap-1.5 text-[12px] text-brand-textMuted"><span>Home</span><i data-lucide="chevron-right" class="h-3.5 w-3.5"></i><span class="font-medium text-brand-textSecondary">My Badges</span></nav>
+
+      <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 class="text-[22px] font-bold">My Badges</h1>
+          <p class="text-[14px] text-brand-textMuted">Earn badges automatically as you hit milestones. Share them to show off your progress.</p>
+        </div>
+        <div class="flex gap-3">
+          <div class="rounded-2xl border border-[#e6e8e9] bg-white px-5 py-3 text-center"><p class="text-2xl font-bold text-brand-primary">5</p><p class="text-xs text-brand-textMuted">Unlocked</p></div>
+          <div class="rounded-2xl border border-[#e6e8e9] bg-white px-5 py-3 text-center"><p class="text-2xl font-bold text-brand-textMuted">5</p><p class="text-xs text-brand-textMuted">Locked</p></div>
+        </div>
+      </div>
+
+      <div id="badgeGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"></div>
+
+      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Badge collection (GM-1, GM-2) · for review only</p>
+    </main>
+  </div>
+</div>
+
+<!-- Share badge card modal (GM-17/18/19) -->
+<div id="shareModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+  <div class="w-full max-w-sm rounded-2xl bg-white overflow-hidden shadow-xl">
+    <div class="relative p-8 text-center text-white" style="background-image:linear-gradient(135deg,#0a7c85,#1a9ea8)">
+      <div id="cardIcon" class="mx-auto h-24 w-24 rounded-full bg-white/15 flex items-center justify-center text-5xl">🏅</div>
+      <p id="cardName" class="mt-4 text-xl font-bold">Quiz Master</p>
+      <p class="mt-1 text-sm text-white/85">Awarded to <span class="font-semibold">Priya Sharma</span></p>
+      <p id="cardDate" class="text-xs text-white/70 mt-0.5">Earned 10 Jun 2026</p>
+      <p class="mt-4 text-[11px] uppercase tracking-widest text-white/60">AAA Lakshya · Arjunaa Academy</p>
+    </div>
+    <div class="p-4">
+      <div class="grid grid-cols-3 gap-2">
+        <button onclick="toast('Image downloaded')" class="rounded-lg bg-brand-page py-2 text-xs font-medium hover:bg-brand-subtle flex flex-col items-center gap-1"><i data-lucide="download" class="h-4 w-4"></i>Download</button>
+        <button onclick="toast('Sharing to WhatsApp')" class="rounded-lg bg-brand-page py-2 text-xs font-medium hover:bg-brand-subtle flex flex-col items-center gap-1"><i data-lucide="message-circle" class="h-4 w-4"></i>WhatsApp</button>
+        <button onclick="toast('Sharing to Instagram')" class="rounded-lg bg-brand-page py-2 text-xs font-medium hover:bg-brand-subtle flex flex-col items-center gap-1"><i data-lucide="instagram" class="h-4 w-4"></i>Instagram</button>
+      </div>
+      <button onclick="closeShare()" class="mt-3 w-full rounded-lg border border-[#e6e8e9] py-2 text-sm font-medium hover:bg-brand-page">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-textPrimary text-white text-sm px-4 py-2 rounded-lg shadow-lg hidden">Done</div>
+
+<script>
+  const badges = [
+    { icon:"👟", name:"First Steps",       desc:"Complete your first quiz",                unlocked:true,  date:"02 May 2026" },
+    { icon:"🔥", name:"Weekly Warrior",    desc:"7-day activity streak",                  unlocked:true,  date:"14 May 2026" },
+    { icon:"🏅", name:"Quiz Master",       desc:"Score ≥85% in 5 quizzes",                unlocked:true,  date:"10 Jun 2026" },
+    { icon:"📘", name:"Chapter Champion",  desc:"100% chapter completion, >85% avg",      unlocked:true,  date:"05 Jun 2026" },
+    { icon:"⭐", name:"Improvement Star",  desc:"20% improvement in a weak topic",        unlocked:true,  date:"12 Jun 2026" },
+    { icon:"🗓️", name:"Monthly Master",    desc:"30-day activity streak",                 unlocked:false, progress:18, total:30, unit:"days" },
+    { icon:"💯", name:"Century Champion",  desc:"100-day activity streak",                unlocked:false, progress:18, total:100, unit:"days" },
+    { icon:"⚡", name:"Speed Demon",       desc:"Finish a test in <50% time, >80% acc",   unlocked:false, progress:0, total:1, unit:"" },
+    { icon:"🎯", name:"Mock Master",       desc:"Complete 10 full-length mock tests",     unlocked:false, progress:6, total:10, unit:"mocks" },
+    { icon:"🧠", name:"Subject Expert",    desc:">90% average in a subject across 5 tests", unlocked:false, progress:3, total:5, unit:"tests" },
+  ];
+  document.getElementById("badgeGrid").innerHTML = badges.map((b,i)=>{
+    if(b.unlocked){
+      return `<div class="badge-card rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center">
+        <div class="mx-auto h-16 w-16 rounded-full bg-brand-subtle flex items-center justify-center text-3xl">${b.icon}</div>
+        <p class="mt-2 font-semibold text-sm">${b.name}</p>
+        <p class="text-[11px] text-brand-textMuted leading-tight mt-0.5">${b.desc}</p>
+        <p class="text-[11px] text-brand-success font-medium mt-1.5">✓ ${b.date}</p>
+        <button onclick="openShare(${i})" class="mt-2 w-full rounded-lg bg-brand-subtle text-brand-primary text-xs font-semibold py-1.5 hover:bg-brand-secondary/60 flex items-center justify-center gap-1"><i data-lucide="share-2" class="h-3.5 w-3.5"></i>Share</button>
+      </div>`;
+    }
+    const pct = b.total ? Math.round(b.progress/b.total*100) : 0;
+    return `<div class="badge-card rounded-2xl border border-dashed border-[#d1d5db] bg-[#fafbfb] p-4 text-center">
+      <div class="mx-auto h-16 w-16 rounded-full bg-gray-100 flex items-center justify-center text-3xl grayscale opacity-50">${b.icon}</div>
+      <p class="mt-2 font-semibold text-sm text-brand-textSecondary flex items-center justify-center gap-1"><i data-lucide="lock" class="h-3 w-3"></i>${b.name}</p>
+      <p class="text-[11px] text-brand-textMuted leading-tight mt-0.5">${b.desc}</p>
+      <div class="mt-2 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden"><div class="h-full bg-brand-primary" style="width:${pct}%"></div></div>
+      <p class="text-[11px] text-brand-textMuted mt-1">${b.progress}/${b.total} ${b.unit}</p>
+    </div>`;
+  }).join("");
+
+  function openShare(i){
+    const b = badges[i];
+    document.getElementById("cardIcon").textContent = b.icon;
+    document.getElementById("cardName").textContent = b.name;
+    document.getElementById("cardDate").textContent = "Earned " + b.date;
+    const m=document.getElementById("shareModal"); m.classList.remove("hidden"); m.classList.add("flex"); lucide.createIcons();
+  }
+  function closeShare(){ const m=document.getElementById("shareModal"); m.classList.add("hidden"); m.classList.remove("flex"); }
+  let tt; function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.remove("hidden"); clearTimeout(tt); tt=setTimeout(()=>t.classList.add("hidden"),2000); }
+  lucide.createIcons();
+</script>
+</body>
+</html>

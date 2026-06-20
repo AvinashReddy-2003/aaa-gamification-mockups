@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gamification Admin — AAA Lakshya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { brand: { primary:'#0a7c85', primaryDark:'#075e66', primaryHover:'#0d8f99', heroTeal:'#1a9ea8', secondary:'#a8dce0', subtle:'#e0f5f6', page:'#f5f9f9', success:'#2ba080', successBg:'#d6f0e8', warning:'#f4735a', warningBg:'#fdeae6', info:'#3b8fd4', infoBg:'#e0eefa', textPrimary:'#111827', textSecondary:'#374151', textMuted:'#6b7280', border:'#d1d5db' } },
+  fontFamily: { sans:['Geist','ui-sans-serif','system-ui','sans-serif'] } } } }
+</script>
+<style>
+  body{font-family:'Geist',ui-sans-serif,system-ui,sans-serif}
+  .btn-brand{background-image:linear-gradient(174deg,#3bafa8,#2c9d96);box-shadow:0 2px 12px rgba(59,175,168,.3);color:#fff}
+  .btn-brand:hover{background-image:linear-gradient(174deg,#35a39c,#278f89)}
+  .nav-item{display:flex;align-items:center;gap:.5rem;padding:.625rem .75rem .625rem .5rem;font-size:13px;font-weight:500;border-radius:.75rem;color:rgba(255,255,255,.7);border-left:4px solid transparent}
+  .nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+  .nav-item.active{background:#fff;color:#0a7c85;box-shadow:0 1px 2px rgba(0,0,0,.06);padding-left:.75rem}
+  .row:hover{background:#fafbfb}
+</style>
+</head>
+<body class="bg-brand-page text-brand-textPrimary">
+<div class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="hidden md:flex w-[210px] shrink-0 flex-col bg-brand-primary text-white border-r border-[#115e59]">
+    <div class="flex items-center gap-2 px-3 py-4">
+      <div class="h-10 w-10 shrink-0 rounded-full bg-white flex items-center justify-center"><span class="text-brand-primary font-extrabold text-sm">AAA</span></div>
+      <span class="text-[14px] font-bold leading-[16px]">ARJUNAA<br>ACADEMY FOR<br>ACHIEVERS</span>
+    </div>
+    <nav class="space-y-1 px-2 pt-2">
+      <a class="nav-item"><i data-lucide="layout-dashboard" class="h-4 w-4"></i>Dashboard</a>
+      <a class="nav-item"><i data-lucide="users" class="h-4 w-4"></i>Students</a>
+      <a class="nav-item"><i data-lucide="book-open" class="h-4 w-4"></i>Content</a>
+      <a class="nav-item"><i data-lucide="clipboard-list" class="h-4 w-4"></i>Tests</a>
+      <a href="admin-gamification.html" class="nav-item active"><i data-lucide="sliders-horizontal" class="h-4 w-4"></i>Gamification</a>
+      <a class="nav-item"><i data-lucide="credit-card" class="h-4 w-4"></i>Subscriptions</a>
+    </nav>
+    <div class="flex-1"></div>
+    <div class="border-t border-white/15 px-3 py-2.5 flex items-center gap-2.5">
+      <div class="h-8 w-8 rounded-full bg-white flex items-center justify-center text-brand-primary font-bold text-xs">AD</div>
+      <div class="min-w-0 flex-1"><p class="truncate text-[13px] font-semibold text-white">Admin</p></div>
+      <i data-lucide="chevron-up" class="h-4 w-4 text-white/50"></i>
+    </div>
+  </aside>
+
+  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
+    <header class="flex h-[64px] md:h-[80px] shrink-0 items-center border-b border-[#e6e8e9] bg-[rgba(246,250,250,0.85)] px-4 md:px-8 backdrop-blur">
+      <a href="index.html" class="flex items-center gap-1.5 text-[13px] font-medium text-brand-textMuted hover:text-brand-primary"><i data-lucide="arrow-left" class="h-4 w-4"></i> All Mockups</a>
+      <div class="ml-auto flex items-center gap-2">
+        <span class="flex h-[32px] items-center rounded-full bg-brand-secondary px-4 text-[13px] font-semibold uppercase text-[#006d77]">Platform Admin</span>
+        <button class="relative h-9 w-9 rounded-full hover:bg-black/5 flex items-center justify-center text-brand-textSecondary"><i data-lucide="bell" class="h-5 w-5"></i></button>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
+      <nav class="mb-3 flex items-center gap-1.5 text-[12px] text-brand-textMuted"><span>Admin</span><i data-lucide="chevron-right" class="h-3.5 w-3.5"></i><span class="font-medium text-brand-textSecondary">Gamification</span></nav>
+
+      <div class="mb-5">
+        <h1 class="text-[22px] font-bold">Gamification</h1>
+        <p class="text-[14px] text-brand-textMuted">Approve redemptions, manage batches for leaderboards, and configure token rates.</p>
+      </div>
+
+      <!-- Stats -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Pending Redemptions</p><p class="text-2xl font-bold mt-1 text-brand-warning">8</p></div>
+        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Tokens in Circulation</p><p class="text-2xl font-bold mt-1">4.2M</p></div>
+        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Badges Awarded</p><p class="text-2xl font-bold mt-1">12,840</p></div>
+        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Active Batches</p><p class="text-2xl font-bold mt-1">14</p></div>
+      </section>
+
+      <!-- Redemption requests -->
+      <section class="bg-white rounded-2xl border border-[#e6e8e9] overflow-hidden mb-6">
+        <div class="border-b border-[#e6e8e9] px-6 py-4 flex items-center justify-between"><h2 class="text-lg font-semibold">Redemption Requests</h2><span class="text-sm text-brand-textMuted">Tokens deducted only after approval (GM-41)</span></div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-brand-page text-brand-textMuted text-left"><tr><th class="px-6 py-3 font-medium">Student</th><th class="px-6 py-3 font-medium">Reward</th><th class="px-6 py-3 font-medium text-right">Tokens</th><th class="px-6 py-3 font-medium">Requested</th><th class="px-6 py-3 font-medium text-right">Action</th></tr></thead>
+            <tbody id="redeemTable" class="divide-y divide-[#eef2f2]"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Batch management -->
+        <section class="bg-white rounded-2xl border border-[#e6e8e9] p-6">
+          <div class="flex items-center justify-between mb-4"><h2 class="text-lg font-semibold">Batches</h2><button onclick="toast('New batch created')" class="btn-brand rounded-lg px-3 py-1.5 text-xs font-semibold flex items-center gap-1"><i data-lucide="plus" class="h-4 w-4"></i>Create Batch</button></div>
+          <div id="batchList" class="space-y-2.5"></div>
+          <p class="text-xs text-brand-textMuted mt-3">A student belongs to one batch at a time. Combo enrolments count as a batch.</p>
+        </section>
+
+        <!-- Token config -->
+        <section class="bg-white rounded-2xl border border-[#e6e8e9] p-6">
+          <h2 class="text-lg font-semibold mb-4">Token Configuration</h2>
+          <div class="space-y-4 text-sm">
+            <div class="flex items-center justify-between"><span>Daily login</span><input type="number" value="10" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+            <div class="flex items-center justify-between"><span>Quiz completed</span><input type="number" value="20" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+            <div class="flex items-center justify-between"><span>Mock test</span><input type="number" value="100" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+            <div class="flex items-center justify-between"><span>Advanced tier multiplier</span><input type="number" value="1.5" step="0.1" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+            <div class="flex items-center justify-between"><span>₹ per 1,000 tokens (redemption)</span><input type="number" value="100" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+            <div class="flex items-center justify-between"><span>Minimum tokens to redeem</span><input type="number" value="1000" class="w-24 rounded-lg border border-[#d1d5db] px-3 py-1.5 text-right"></div>
+          </div>
+          <button onclick="toast('Token configuration saved')" class="btn-brand mt-5 w-full rounded-lg py-2.5 text-sm font-semibold">Save Configuration</button>
+        </section>
+      </div>
+
+      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Admin (GM-4, GM-5) · for review only</p>
+    </main>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-textPrimary text-white text-sm px-4 py-2 rounded-lg shadow-lg hidden">Done</div>
+
+<script>
+  const reqs = [
+    { name:"Rahul Verma", reward:"₹200 renewal discount", tokens:"2,000", date:"19 Jun 2026" },
+    { name:"Sana Kapoor", reward:"Extra mock tests (hybrid)", tokens:"1,000 + ₹200", date:"18 Jun 2026" },
+    { name:"Dev Patel",   reward:"₹100 renewal discount", tokens:"1,000", date:"18 Jun 2026" },
+    { name:"Isha Rao",    reward:"₹300 renewal discount", tokens:"3,000", date:"17 Jun 2026" },
+  ];
+  document.getElementById("redeemTable").innerHTML = reqs.map((q,i)=>`
+    <tr class="row" id="req${i}">
+      <td class="px-6 py-3"><div class="flex items-center gap-3"><span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">${q.name.split(" ").map(w=>w[0]).join("")}</span><span class="font-medium">${q.name}</span></div></td>
+      <td class="px-6 py-3 text-brand-textSecondary">${q.reward}</td>
+      <td class="px-6 py-3 text-right font-medium">${q.tokens}</td>
+      <td class="px-6 py-3 text-brand-textMuted">${q.date}</td>
+      <td class="px-6 py-3 text-right whitespace-nowrap">
+        <button onclick="resolve(${i},'approved')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-successBg text-brand-success hover:opacity-80">Approve</button>
+        <button onclick="resolve(${i},'rejected')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-warningBg text-brand-warning hover:opacity-80 ml-1">Reject</button>
+      </td>
+    </tr>`).join("");
+
+  const batches = [
+    { name:"NEET 2027 — Batch A", count:48, exam:"NEET" },
+    { name:"NEET 2027 — Batch B", count:42, exam:"NEET" },
+    { name:"JEE 2027 — Morning",  count:36, exam:"JEE" },
+    { name:"KCET 2027 — Combo",   count:29, exam:"KCET" },
+  ];
+  document.getElementById("batchList").innerHTML = batches.map(b=>`
+    <div class="flex items-center gap-3 rounded-xl border border-[#eef2f2] px-4 py-3">
+      <span class="h-9 w-9 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center"><i data-lucide="users" class="h-5 w-5"></i></span>
+      <div class="flex-1 min-w-0"><p class="font-medium truncate">${b.name}</p><p class="text-xs text-brand-textMuted">${b.count} students · ${b.exam}</p></div>
+      <button onclick="toast('Manage ${b.name}')" class="text-xs font-semibold text-brand-primary hover:underline">Assign</button>
+    </div>`).join("");
+
+  let tt; function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.remove("hidden"); clearTimeout(tt); tt=setTimeout(()=>t.classList.add("hidden"),1600); }
+  function resolve(i,action){ const row=document.getElementById("req"+i); const color=action==="approved"?"text-brand-success":"text-brand-warning"; row.querySelector("td:last-child").innerHTML=`<span class="text-xs font-semibold ${color} capitalize">${action} ✓</span>`; toast("Redemption "+action); }
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — AAA Lakshya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { brand: { primary:'#0a7c85', primaryDark:'#075e66', primaryHover:'#0d8f99', heroTeal:'#1a9ea8', secondary:'#a8dce0', subtle:'#e0f5f6', page:'#f5f9f9', success:'#2ba080', successBg:'#d6f0e8', warning:'#f4735a', warningBg:'#fdeae6', info:'#3b8fd4', infoBg:'#e0eefa', textPrimary:'#111827', textSecondary:'#374151', textMuted:'#6b7280', border:'#d1d5db' } },
+  fontFamily: { sans:['Geist','ui-sans-serif','system-ui','sans-serif'] } } } }
+</script>
+<style>
+  body{font-family:'Geist',ui-sans-serif,system-ui,sans-serif}
+  .nav-item{display:flex;align-items:center;gap:.5rem;padding:.625rem .75rem .625rem .5rem;font-size:13px;font-weight:500;border-radius:.75rem;color:rgba(255,255,255,.7);border-left:4px solid transparent}
+  .nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+  .nav-item.active{background:#fff;color:#0a7c85;box-shadow:0 1px 2px rgba(0,0,0,.06);padding-left:.75rem}
+  .tab{padding:.5rem 1rem;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:#6b7280}
+  .tab.active{background:#0a7c85;color:#fff}
+  .row:hover{background:#fafbfb}
+</style>
+</head>
+<body class="bg-brand-page text-brand-textPrimary">
+<div class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="hidden md:flex w-[210px] shrink-0 flex-col bg-brand-primary text-white border-r border-[#115e59]">
+    <div class="flex items-center gap-2 px-3 py-4">
+      <div class="h-10 w-10 shrink-0 rounded-full bg-white flex items-center justify-center"><span class="text-brand-primary font-extrabold text-sm">AAA</span></div>
+      <span class="text-[14px] font-bold leading-[16px]">ARJUNAA<br>ACADEMY FOR<br>ACHIEVERS</span>
+    </div>
+    <nav class="space-y-1 px-2 pt-2">
+      <a class="nav-item"><i data-lucide="layout-dashboard" class="h-4 w-4"></i>My Dashboard</a>
+      <a class="nav-item"><i data-lucide="book-open" class="h-4 w-4"></i>My Learning</a>
+      <a class="nav-item"><i data-lucide="video" class="h-4 w-4"></i>My Classes</a>
+      <a class="nav-item"><i data-lucide="clipboard-list" class="h-4 w-4"></i>My Tests</a>
+      <a href="badges.html" class="nav-item"><i data-lucide="award" class="h-4 w-4"></i>My Badges</a>
+      <a href="leaderboard.html" class="nav-item active"><i data-lucide="trophy" class="h-4 w-4"></i>Leaderboard</a>
+      <a href="tokens.html" class="nav-item"><i data-lucide="coins" class="h-4 w-4"></i>My Rewards</a>
+    </nav>
+    <div class="flex-1"></div>
+    <div class="border-t border-white/15 px-3 py-2.5 flex items-center gap-2.5">
+      <div class="h-8 w-8 rounded-full bg-white flex items-center justify-center text-brand-primary font-bold text-xs">PS</div>
+      <div class="min-w-0 flex-1"><p class="truncate text-[13px] font-semibold text-white">Priya Sharma</p></div>
+      <i data-lucide="chevron-up" class="h-4 w-4 text-white/50"></i>
+    </div>
+  </aside>
+
+  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
+    <header class="flex h-[64px] md:h-[80px] shrink-0 items-center border-b border-[#e6e8e9] bg-[rgba(246,250,250,0.85)] px-4 md:px-8 backdrop-blur">
+      <a href="index.html" class="flex items-center gap-1.5 text-[13px] font-medium text-brand-textMuted hover:text-brand-primary"><i data-lucide="arrow-left" class="h-4 w-4"></i> All Mockups</a>
+      <div class="ml-auto flex items-center gap-2">
+        <span class="flex h-[32px] items-center gap-1.5 rounded-full bg-[#fff3cd] px-3 text-[13px] font-semibold text-[#b8860b]"><i data-lucide="coins" class="h-4 w-4"></i>3,450 tokens</span>
+        <span class="hidden sm:flex h-[32px] items-center rounded-full bg-brand-secondary px-4 text-[13px] font-semibold uppercase text-[#006d77]">Advanced</span>
+        <button class="relative h-9 w-9 rounded-full hover:bg-black/5 flex items-center justify-center text-brand-textSecondary"><i data-lucide="bell" class="h-5 w-5"></i></button>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
+      <nav class="mb-3 flex items-center gap-1.5 text-[12px] text-brand-textMuted"><span>Home</span><i data-lucide="chevron-right" class="h-3.5 w-3.5"></i><span class="font-medium text-brand-textSecondary">Leaderboard</span></nav>
+
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 class="text-[22px] font-bold flex items-center gap-2">Leaderboard <span class="flex items-center gap-1 text-[11px] font-semibold text-brand-success bg-brand-successBg px-2 py-0.5 rounded-full"><span class="h-1.5 w-1.5 rounded-full bg-brand-success animate-pulse"></span>Live</span></h1>
+          <p class="text-[14px] text-brand-textMuted">See where you stand. Updates in real-time — your own rank always shows.</p>
+        </div>
+      </div>
+
+      <!-- Period tabs -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="tab active" onclick="setTab(this,'Daily')">Daily</span>
+        <span class="tab" onclick="setTab(this,'Weekly')">Weekly</span>
+        <span class="tab" onclick="setTab(this,'Monthly')">Monthly</span>
+        <span class="tab" onclick="setTab(this,'All-time')">All-time (Streak)</span>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-3 mb-5">
+        <select class="rounded-lg border border-[#d1d5db] bg-white px-3 py-2 text-sm"><option>All Exams</option><option>NEET</option><option>JEE</option><option>KCET</option></select>
+        <select class="rounded-lg border border-[#d1d5db] bg-white px-3 py-2 text-sm"><option>All Subjects</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Maths</option></select>
+        <select class="rounded-lg border border-[#d1d5db] bg-white px-3 py-2 text-sm"><option>All Batches</option><option>NEET 2027 — Batch A</option><option>NEET 2027 — Batch B</option></select>
+      </div>
+
+      <!-- Podium -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-5 max-w-2xl">
+        <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-1 mt-6"><div class="text-2xl">🥈</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">AM</div><p class="font-semibold text-sm mt-1 truncate">Arjun M.</p><p class="text-xs text-brand-textMuted">980 pts</p></div>
+        <div class="rounded-2xl border-2 border-[#f4c430] bg-white p-4 text-center order-2"><div class="text-3xl">🥇</div><div class="mx-auto mt-1 h-12 w-12 rounded-full bg-brand-primary text-white font-bold flex items-center justify-center">RV</div><p class="font-semibold mt-1 truncate">Rahul V.</p><p class="text-xs text-brand-textMuted">1,020 pts</p></div>
+        <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-3 mt-6"><div class="text-2xl">🥉</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">SK</div><p class="font-semibold text-sm mt-1 truncate">Sana K.</p><p class="text-xs text-brand-textMuted">960 pts</p></div>
+      </div>
+
+      <!-- Table -->
+      <section class="bg-white rounded-2xl border border-[#e6e8e9] overflow-hidden">
+        <div class="border-b border-[#e6e8e9] px-6 py-3 flex items-center justify-between"><h2 class="font-semibold">Top 100 — <span id="periodLabel">Daily</span></h2><span class="text-xs text-brand-textMuted">No anonymous entries</span></div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-brand-page text-brand-textMuted text-left"><tr><th class="px-6 py-3 font-medium w-16">Rank</th><th class="px-6 py-3 font-medium">Student</th><th class="px-6 py-3 font-medium">Exam</th><th class="px-6 py-3 font-medium text-right">Score</th></tr></thead>
+            <tbody id="lbTable" class="divide-y divide-[#eef2f2]"></tbody>
+          </table>
+        </div>
+        <!-- Own rank sticky row -->
+        <div class="border-t-2 border-brand-primary bg-brand-subtle px-6 py-3 flex items-center gap-4 text-sm">
+          <span class="w-10 font-bold text-brand-primary">#27</span>
+          <span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">PS</span>
+          <span class="flex-1 font-semibold">Priya Sharma <span class="text-brand-primary text-xs font-medium">(You)</span></span>
+          <span class="text-brand-textMuted">NEET</span>
+          <span class="font-semibold">720 pts</span>
+        </div>
+      </section>
+
+      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Leaderboards (GM-5) · for review only</p>
+    </main>
+  </div>
+</div>
+
+<script>
+  const rows = [
+    { r:1, name:"Rahul Verma", exam:"NEET", score:1020 },
+    { r:2, name:"Arjun Mehta", exam:"JEE",  score:980 },
+    { r:3, name:"Sana Kapoor", exam:"NEET", score:960 },
+    { r:4, name:"Dev Patel",   exam:"KCET", score:910 },
+    { r:5, name:"Isha Rao",    exam:"NEET", score:890 },
+    { r:6, name:"Kabir Singh", exam:"JEE",  score:870 },
+    { r:7, name:"Neha Shah",   exam:"NEET", score:855 },
+    { r:8, name:"Aditya Nair", exam:"KCET", score:840 },
+    { r:9, name:"Riya Menon",  exam:"NEET", score:820 },
+    { r:10,name:"Vivek Das",   exam:"JEE",  score:805 },
+    { r:11,name:"Tara Joshi",  exam:"NEET", score:790 },
+    { r:12,name:"Karan Bose",  exam:"KCET", score:778 },
+  ];
+  const medal = r => r===1?"🥇":r===2?"🥈":r===3?"🥉":"#"+r;
+  document.getElementById("lbTable").innerHTML = rows.map(x=>`
+    <tr class="row">
+      <td class="px-6 py-3 font-bold ${x.r<=3?'text-lg':'text-brand-textMuted'}">${medal(x.r)}</td>
+      <td class="px-6 py-3"><div class="flex items-center gap-3"><span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">${x.name.split(" ").map(w=>w[0]).join("")}</span><span class="font-medium">${x.name}</span></div></td>
+      <td class="px-6 py-3 text-brand-textMuted">${x.exam}</td>
+      <td class="px-6 py-3 text-right font-semibold">${x.score} pts</td>
+    </tr>`).join("");
+  function setTab(el,label){ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); el.classList.add("active"); document.getElementById("periodLabel").textContent=label; }
+  lucide.createIcons();
+</script>
+</body>
+</html>
