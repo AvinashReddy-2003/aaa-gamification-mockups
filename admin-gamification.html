@@ -63,7 +63,7 @@ tailwind.config = { theme: { extend: {
 
       <div class="mb-5">
         <h1 class="text-[22px] font-bold">Gamification</h1>
-        <p class="text-[14px] text-brand-textMuted">Approve redemptions, manage batches for leaderboards, and configure token rates.</p>
+        <p class="text-[14px] text-brand-textMuted">Approve redemptions, manage batches for leaderboards, and configure token rates and badge criteria.</p>
       </div>
 
       <!-- Stats -->
@@ -108,7 +108,15 @@ tailwind.config = { theme: { extend: {
         </section>
       </div>
 
-      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Admin (GM-4, GM-5) · for review only</p>
+      <!-- Badge criteria config -->
+      <section class="bg-white rounded-2xl border border-[#e6e8e9] p-6 mt-6">
+        <div class="flex items-center justify-between mb-1"><h2 class="text-lg font-semibold">Badge Criteria</h2><span class="text-sm text-brand-textMuted">Thresholds are admin-configurable</span></div>
+        <p class="text-xs text-brand-textMuted mb-4">Set the thresholds that automatically award each badge.</p>
+        <div id="badgeConfig" class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm"></div>
+        <button onclick="toast('Badge criteria saved')" class="btn-brand mt-5 rounded-lg px-5 py-2.5 text-sm font-semibold">Save Criteria</button>
+      </section>
+
+      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Admin (GM-1, GM-4, GM-5) · for review only</p>
     </main>
   </div>
 </div>
@@ -118,7 +126,7 @@ tailwind.config = { theme: { extend: {
 <script>
   const reqs = [
     { name:"Rahul Verma", reward:"₹200 renewal discount", tokens:"2,000", date:"19 Jun 2026" },
-    { name:"Sana Kapoor", reward:"Extra mock tests (hybrid)", tokens:"1,000 + ₹200", date:"18 Jun 2026" },
+    { name:"Sana Kapoor", reward:"₹150 renewal discount", tokens:"1,500", date:"18 Jun 2026" },
     { name:"Dev Patel",   reward:"₹100 renewal discount", tokens:"1,000", date:"18 Jun 2026" },
     { name:"Isha Rao",    reward:"₹300 renewal discount", tokens:"3,000", date:"17 Jun 2026" },
   ];
@@ -146,6 +154,28 @@ tailwind.config = { theme: { extend: {
       <div class="flex-1 min-w-0"><p class="font-medium truncate">${b.name}</p><p class="text-xs text-brand-textMuted">${b.count} students · ${b.exam}</p></div>
       <button onclick="toast('Manage ${b.name}')" class="text-xs font-semibold text-brand-primary hover:underline">Assign</button>
     </div>`).join("");
+
+  const badgeCriteria = [
+    { name:"First Steps",      fields:[], note:"Awarded on first quiz completed" },
+    { name:"Weekly Warrior",   fields:[{label:"Streak days", val:7}] },
+    { name:"Monthly Master",   fields:[{label:"Streak days", val:30}] },
+    { name:"Century Champion", fields:[{label:"Streak days", val:100}] },
+    { name:"Quiz Master",      fields:[{label:"Min score %", val:85},{label:"Quizzes", val:5}] },
+    { name:"Speed Demon",      fields:[{label:"Max time %", val:50},{label:"Min accuracy %", val:80}] },
+    { name:"Chapter Champion", fields:[{label:"Min avg %", val:85}] },
+    { name:"Mock Master",      fields:[{label:"Mock tests", val:10}] },
+    { name:"Improvement Star", fields:[{label:"Improvement %", val:20}] },
+    { name:"Subject Expert",   fields:[{label:"Min avg %", val:90},{label:"Tests", val:5}] },
+  ];
+  document.getElementById("badgeConfig").innerHTML = badgeCriteria.map(b=>{
+    const controls = b.fields.length
+      ? b.fields.map(f=>`<label class="flex items-center gap-1.5 text-xs text-brand-textMuted">${f.label}<input type="number" value="${f.val}" class="w-16 rounded-lg border border-[#d1d5db] px-2 py-1 text-right text-sm text-brand-textPrimary"></label>`).join("")
+      : `<span class="text-xs text-brand-textMuted italic">${b.note}</span>`;
+    return `<div class="flex items-center justify-between gap-3 border-b border-[#eef2f2] pb-2.5">
+      <span class="font-medium">${b.name}</span>
+      <div class="flex items-center gap-3">${controls}</div>
+    </div>`;
+  }).join("");
 
   let tt; function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.remove("hidden"); clearTimeout(tt); tt=setTimeout(()=>t.classList.add("hidden"),1600); }
   function resolve(i,action){ const row=document.getElementById("req"+i); const color=action==="approved"?"text-brand-success":"text-brand-warning"; row.querySelector("td:last-child").innerHTML=`<span class="text-xs font-semibold ${color} capitalize">${action} ✓</span>`; toast("Redemption "+action); }

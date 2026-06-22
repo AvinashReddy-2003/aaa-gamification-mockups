@@ -65,8 +65,8 @@ tailwind.config = { theme: { extend: {
 
       <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 class="text-[22px] font-bold flex items-center gap-2">Leaderboard <span class="flex items-center gap-1 text-[11px] font-semibold text-brand-success bg-brand-successBg px-2 py-0.5 rounded-full"><span class="h-1.5 w-1.5 rounded-full bg-brand-success animate-pulse"></span>Live</span></h1>
-          <p class="text-[14px] text-brand-textMuted">See where you stand. Updates in real-time — your own rank always shows.</p>
+          <h1 class="text-[22px] font-bold">Leaderboard</h1>
+          <p class="text-[14px] text-brand-textMuted">See where you stand. Refreshed periodically — your own rank always shows.</p>
         </div>
       </div>
 
@@ -86,29 +86,19 @@ tailwind.config = { theme: { extend: {
       </div>
 
       <!-- Podium -->
-      <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-5 max-w-2xl">
-        <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-1 mt-6"><div class="text-2xl">🥈</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">AM</div><p class="font-semibold text-sm mt-1 truncate">Arjun M.</p><p class="text-xs text-brand-textMuted">980 pts</p></div>
-        <div class="rounded-2xl border-2 border-[#f4c430] bg-white p-4 text-center order-2"><div class="text-3xl">🥇</div><div class="mx-auto mt-1 h-12 w-12 rounded-full bg-brand-primary text-white font-bold flex items-center justify-center">RV</div><p class="font-semibold mt-1 truncate">Rahul V.</p><p class="text-xs text-brand-textMuted">1,020 pts</p></div>
-        <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-3 mt-6"><div class="text-2xl">🥉</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">SK</div><p class="font-semibold text-sm mt-1 truncate">Sana K.</p><p class="text-xs text-brand-textMuted">960 pts</p></div>
-      </div>
+      <div id="podium" class="grid grid-cols-3 gap-3 sm:gap-4 mb-5 max-w-2xl"></div>
 
       <!-- Table -->
       <section class="bg-white rounded-2xl border border-[#e6e8e9] overflow-hidden">
         <div class="border-b border-[#e6e8e9] px-6 py-3 flex items-center justify-between"><h2 class="font-semibold">Top 100 — <span id="periodLabel">Daily</span></h2><span class="text-xs text-brand-textMuted">No anonymous entries</span></div>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
-            <thead class="bg-brand-page text-brand-textMuted text-left"><tr><th class="px-6 py-3 font-medium w-16">Rank</th><th class="px-6 py-3 font-medium">Student</th><th class="px-6 py-3 font-medium">Exam</th><th class="px-6 py-3 font-medium text-right">Score</th></tr></thead>
+            <thead class="bg-brand-page text-brand-textMuted text-left"><tr><th class="px-6 py-3 font-medium w-16">Rank</th><th class="px-6 py-3 font-medium">Student</th><th class="px-6 py-3 font-medium">Exam</th><th id="scoreHeader" class="px-6 py-3 font-medium text-right">Score</th></tr></thead>
             <tbody id="lbTable" class="divide-y divide-[#eef2f2]"></tbody>
           </table>
         </div>
         <!-- Own rank sticky row -->
-        <div class="border-t-2 border-brand-primary bg-brand-subtle px-6 py-3 flex items-center gap-4 text-sm">
-          <span class="w-10 font-bold text-brand-primary">#27</span>
-          <span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">PS</span>
-          <span class="flex-1 font-semibold">Priya Sharma <span class="text-brand-primary text-xs font-medium">(You)</span></span>
-          <span class="text-brand-textMuted">NEET</span>
-          <span class="font-semibold">720 pts</span>
-        </div>
+        <div id="ownRank" class="border-t-2 border-brand-primary bg-brand-subtle px-6 py-3 flex items-center gap-4 text-sm"></div>
       </section>
 
       <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Leaderboards (GM-5) · for review only</p>
@@ -117,29 +107,75 @@ tailwind.config = { theme: { extend: {
 </div>
 
 <script>
-  const rows = [
-    { r:1, name:"Rahul Verma", exam:"NEET", score:1020 },
-    { r:2, name:"Arjun Mehta", exam:"JEE",  score:980 },
-    { r:3, name:"Sana Kapoor", exam:"NEET", score:960 },
-    { r:4, name:"Dev Patel",   exam:"KCET", score:910 },
-    { r:5, name:"Isha Rao",    exam:"NEET", score:890 },
-    { r:6, name:"Kabir Singh", exam:"JEE",  score:870 },
-    { r:7, name:"Neha Shah",   exam:"NEET", score:855 },
-    { r:8, name:"Aditya Nair", exam:"KCET", score:840 },
-    { r:9, name:"Riya Menon",  exam:"NEET", score:820 },
-    { r:10,name:"Vivek Das",   exam:"JEE",  score:805 },
-    { r:11,name:"Tara Joshi",  exam:"NEET", score:790 },
-    { r:12,name:"Karan Bose",  exam:"KCET", score:778 },
+  // Daily/Weekly/Monthly rank by points — one completed test = one point.
+  const pointsData = [
+    { name:"Rahul Verma", exam:"NEET", val:24 },
+    { name:"Arjun Mehta", exam:"JEE",  val:22 },
+    { name:"Sana Kapoor", exam:"NEET", val:21 },
+    { name:"Dev Patel",   exam:"KCET", val:19 },
+    { name:"Isha Rao",    exam:"NEET", val:18 },
+    { name:"Kabir Singh", exam:"JEE",  val:17 },
+    { name:"Neha Shah",   exam:"NEET", val:16 },
+    { name:"Aditya Nair", exam:"KCET", val:15 },
+    { name:"Riya Menon",  exam:"NEET", val:14 },
+    { name:"Vivek Das",   exam:"JEE",  val:13 },
+    { name:"Tara Joshi",  exam:"NEET", val:12 },
+    { name:"Karan Bose",  exam:"KCET", val:11 },
   ];
+  // All-time ranks by highest streak (GM-46).
+  const streakData = [
+    { name:"Rahul Verma", exam:"NEET", val:142 },
+    { name:"Sana Kapoor", exam:"NEET", val:128 },
+    { name:"Arjun Mehta", exam:"JEE",  val:119 },
+    { name:"Isha Rao",    exam:"NEET", val:110 },
+    { name:"Dev Patel",   exam:"KCET", val:98 },
+    { name:"Neha Shah",   exam:"NEET", val:95 },
+    { name:"Kabir Singh", exam:"JEE",  val:88 },
+    { name:"Riya Menon",  exam:"NEET", val:84 },
+    { name:"Aditya Nair", exam:"KCET", val:79 },
+    { name:"Tara Joshi",  exam:"NEET", val:72 },
+    { name:"Vivek Das",   exam:"JEE",  val:68 },
+    { name:"Karan Bose",  exam:"KCET", val:61 },
+  ];
+  const own = { points:{ rank:27, val:9 }, streak:{ rank:31, val:38 } };
+
+  const initials = n => n.split(" ").map(w=>w[0]).join("");
   const medal = r => r===1?"🥇":r===2?"🥈":r===3?"🥉":"#"+r;
-  document.getElementById("lbTable").innerHTML = rows.map(x=>`
-    <tr class="row">
-      <td class="px-6 py-3 font-bold ${x.r<=3?'text-lg':'text-brand-textMuted'}">${medal(x.r)}</td>
-      <td class="px-6 py-3"><div class="flex items-center gap-3"><span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">${x.name.split(" ").map(w=>w[0]).join("")}</span><span class="font-medium">${x.name}</span></div></td>
-      <td class="px-6 py-3 text-brand-textMuted">${x.exam}</td>
-      <td class="px-6 py-3 text-right font-semibold">${x.score} pts</td>
-    </tr>`).join("");
-  function setTab(el,label){ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); el.classList.add("active"); document.getElementById("periodLabel").textContent=label; }
+
+  function render(period){
+    const isStreak = period === "All-time";
+    const data = isStreak ? streakData : pointsData;
+    const unit = isStreak ? "days" : "pts";
+    document.getElementById("periodLabel").textContent = period;
+    document.getElementById("scoreHeader").textContent = isStreak ? "Streak" : "Score";
+
+    const p = data.slice(0,3);
+    document.getElementById("podium").innerHTML = `
+      <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-1 mt-6"><div class="text-2xl">🥈</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">${initials(p[1].name)}</div><p class="font-semibold text-sm mt-1 truncate">${p[1].name}</p><p class="text-xs text-brand-textMuted">${p[1].val} ${unit}</p></div>
+      <div class="rounded-2xl border-2 border-[#f4c430] bg-white p-4 text-center order-2"><div class="text-3xl">🥇</div><div class="mx-auto mt-1 h-12 w-12 rounded-full bg-brand-primary text-white font-bold flex items-center justify-center">${initials(p[0].name)}</div><p class="font-semibold mt-1 truncate">${p[0].name}</p><p class="text-xs text-brand-textMuted">${p[0].val} ${unit}</p></div>
+      <div class="rounded-2xl border border-[#e6e8e9] bg-white p-4 text-center order-3 mt-6"><div class="text-2xl">🥉</div><div class="mx-auto mt-1 h-10 w-10 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center">${initials(p[2].name)}</div><p class="font-semibold text-sm mt-1 truncate">${p[2].name}</p><p class="text-xs text-brand-textMuted">${p[2].val} ${unit}</p></div>`;
+
+    document.getElementById("lbTable").innerHTML = data.map((x,idx)=>{
+      const r = idx+1;
+      return `<tr class="row">
+        <td class="px-6 py-3 font-bold ${r<=3?'text-lg':'text-brand-textMuted'}">${medal(r)}</td>
+        <td class="px-6 py-3"><div class="flex items-center gap-3"><span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">${initials(x.name)}</span><span class="font-medium">${x.name}</span></div></td>
+        <td class="px-6 py-3 text-brand-textMuted">${x.exam}</td>
+        <td class="px-6 py-3 text-right font-semibold">${x.val} ${unit}</td>
+      </tr>`;
+    }).join("");
+
+    const o = isStreak ? own.streak : own.points;
+    document.getElementById("ownRank").innerHTML = `
+      <span class="w-10 font-bold text-brand-primary">#${o.rank}</span>
+      <span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">PS</span>
+      <span class="flex-1 font-semibold">Priya Sharma <span class="text-brand-primary text-xs font-medium">(You)</span></span>
+      <span class="text-brand-textMuted">NEET</span>
+      <span class="font-semibold">${o.val} ${unit}</span>`;
+  }
+
+  function setTab(el,label){ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); el.classList.add("active"); render(label); }
+  render("Daily");
   lucide.createIcons();
 </script>
 </body>
