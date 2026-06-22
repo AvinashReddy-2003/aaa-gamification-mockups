@@ -63,15 +63,14 @@ tailwind.config = { theme: { extend: {
 
       <div class="mb-5">
         <h1 class="text-[22px] font-bold">Gamification</h1>
-        <p class="text-[14px] text-brand-textMuted">Approve redemptions, manage batches for leaderboards, and configure token rates and badge criteria.</p>
+        <p class="text-[14px] text-brand-textMuted">Approve redemptions, and configure token rates and badge criteria.</p>
       </div>
 
       <!-- Stats -->
-      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <section class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Pending Redemptions</p><p class="text-2xl font-bold mt-1 text-brand-warning">8</p></div>
         <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Tokens in Circulation</p><p class="text-2xl font-bold mt-1">4.2M</p></div>
         <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Badges Awarded</p><p class="text-2xl font-bold mt-1">12,840</p></div>
-        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Active Batches</p><p class="text-2xl font-bold mt-1">14</p></div>
       </section>
 
       <!-- Redemption requests -->
@@ -85,14 +84,7 @@ tailwind.config = { theme: { extend: {
         </div>
       </section>
 
-      <div class="grid lg:grid-cols-2 gap-6">
-        <!-- Batch management -->
-        <section class="bg-white rounded-2xl border border-[#e6e8e9] p-6">
-          <div class="flex items-center justify-between mb-4"><h2 class="text-lg font-semibold">Batches</h2><button onclick="toast('New batch created')" class="btn-brand rounded-lg px-3 py-1.5 text-xs font-semibold flex items-center gap-1"><i data-lucide="plus" class="h-4 w-4"></i>Create Batch</button></div>
-          <div id="batchList" class="space-y-2.5"></div>
-          <p class="text-xs text-brand-textMuted mt-3">A student belongs to one batch at a time. Combo enrolments count as a batch.</p>
-        </section>
-
+      <div>
         <!-- Token config -->
         <section class="bg-white rounded-2xl border border-[#e6e8e9] p-6">
           <h2 class="text-lg font-semibold mb-4">Token Configuration</h2>
@@ -116,7 +108,7 @@ tailwind.config = { theme: { extend: {
         <button onclick="toast('Badge criteria saved')" class="btn-brand mt-5 rounded-lg px-5 py-2.5 text-sm font-semibold">Save Criteria</button>
       </section>
 
-      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Admin (GM-1, GM-4, GM-5) · for review only</p>
+      <p class="text-center text-xs text-brand-textMuted mt-8">Gamification mockup · P2-06 · Admin (GM-1, GM-4) · for review only</p>
     </main>
   </div>
 </div>
@@ -141,19 +133,6 @@ tailwind.config = { theme: { extend: {
         <button onclick="resolve(${i},'rejected')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-warningBg text-brand-warning hover:opacity-80 ml-1">Reject</button>
       </td>
     </tr>`).join("");
-
-  const batches = [
-    { name:"NEET 2027 — Batch A", count:48, exam:"NEET" },
-    { name:"NEET 2027 — Batch B", count:42, exam:"NEET" },
-    { name:"JEE 2027 — Morning",  count:36, exam:"JEE" },
-    { name:"KCET 2027 — Combo",   count:29, exam:"KCET" },
-  ];
-  document.getElementById("batchList").innerHTML = batches.map(b=>`
-    <div class="flex items-center gap-3 rounded-xl border border-[#eef2f2] px-4 py-3">
-      <span class="h-9 w-9 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center"><i data-lucide="users" class="h-5 w-5"></i></span>
-      <div class="flex-1 min-w-0"><p class="font-medium truncate">${b.name}</p><p class="text-xs text-brand-textMuted">${b.count} students · ${b.exam}</p></div>
-      <button onclick="toast('Manage ${b.name}')" class="text-xs font-semibold text-brand-primary hover:underline">Assign</button>
-    </div>`).join("");
 
   const badgeCriteria = [
     { name:"First Steps",      fields:[], note:"Awarded on first quiz completed" },
