@@ -63,25 +63,13 @@ tailwind.config = { theme: { extend: {
 
       <div class="mb-5">
         <h1 class="text-[22px] font-bold">Gamification</h1>
-        <p class="text-[14px] text-brand-textMuted">Approve redemptions, and configure token rates and badge criteria.</p>
+        <p class="text-[14px] text-brand-textMuted">Configure token rates and badge criteria.</p>
       </div>
 
       <!-- Stats -->
-      <section class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Pending Redemptions</p><p class="text-2xl font-bold mt-1 text-brand-warning">8</p></div>
+      <section class="grid grid-cols-2 gap-4 mb-6">
         <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Tokens in Circulation</p><p class="text-2xl font-bold mt-1">4.2M</p></div>
         <div class="bg-white rounded-2xl border border-[#e6e8e9] p-5"><p class="text-sm text-brand-textMuted">Badges Awarded</p><p class="text-2xl font-bold mt-1">12,840</p></div>
-      </section>
-
-      <!-- Redemption requests -->
-      <section class="bg-white rounded-2xl border border-[#e6e8e9] overflow-hidden mb-6">
-        <div class="border-b border-[#e6e8e9] px-6 py-4 flex items-center justify-between"><h2 class="text-lg font-semibold">Redemption Requests</h2><span class="text-sm text-brand-textMuted">Tokens deducted only after approval (GM-41)</span></div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead class="bg-brand-page text-brand-textMuted text-left"><tr><th class="px-6 py-3 font-medium">Student</th><th class="px-6 py-3 font-medium">Reward</th><th class="px-6 py-3 font-medium text-right">Tokens</th><th class="px-6 py-3 font-medium">Requested</th><th class="px-6 py-3 font-medium text-right">Action</th></tr></thead>
-            <tbody id="redeemTable" class="divide-y divide-[#eef2f2]"></tbody>
-          </table>
-        </div>
       </section>
 
       <div>
@@ -116,24 +104,6 @@ tailwind.config = { theme: { extend: {
 <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-textPrimary text-white text-sm px-4 py-2 rounded-lg shadow-lg hidden">Done</div>
 
 <script>
-  const reqs = [
-    { name:"Rahul Verma", reward:"₹200 renewal discount", tokens:"2,000", date:"19 Jun 2026" },
-    { name:"Sana Kapoor", reward:"₹150 renewal discount", tokens:"1,500", date:"18 Jun 2026" },
-    { name:"Dev Patel",   reward:"₹100 renewal discount", tokens:"1,000", date:"18 Jun 2026" },
-    { name:"Isha Rao",    reward:"₹300 renewal discount", tokens:"3,000", date:"17 Jun 2026" },
-  ];
-  document.getElementById("redeemTable").innerHTML = reqs.map((q,i)=>`
-    <tr class="row" id="req${i}">
-      <td class="px-6 py-3"><div class="flex items-center gap-3"><span class="h-8 w-8 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center">${q.name.split(" ").map(w=>w[0]).join("")}</span><span class="font-medium">${q.name}</span></div></td>
-      <td class="px-6 py-3 text-brand-textSecondary">${q.reward}</td>
-      <td class="px-6 py-3 text-right font-medium">${q.tokens}</td>
-      <td class="px-6 py-3 text-brand-textMuted">${q.date}</td>
-      <td class="px-6 py-3 text-right whitespace-nowrap">
-        <button onclick="resolve(${i},'approved')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-successBg text-brand-success hover:opacity-80">Approve</button>
-        <button onclick="resolve(${i},'rejected')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-warningBg text-brand-warning hover:opacity-80 ml-1">Reject</button>
-      </td>
-    </tr>`).join("");
-
   const badgeCriteria = [
     { name:"First Steps",      fields:[], note:"Awarded on first quiz completed" },
     { name:"Weekly Warrior",   fields:[{label:"Streak days", val:7}] },
@@ -157,7 +127,6 @@ tailwind.config = { theme: { extend: {
   }).join("");
 
   let tt; function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.remove("hidden"); clearTimeout(tt); tt=setTimeout(()=>t.classList.add("hidden"),1600); }
-  function resolve(i,action){ const row=document.getElementById("req"+i); const color=action==="approved"?"text-brand-success":"text-brand-warning"; row.querySelector("td:last-child").innerHTML=`<span class="text-xs font-semibold ${color} capitalize">${action} ✓</span>`; toast("Redemption "+action); }
   lucide.createIcons();
 </script>
 </body>
